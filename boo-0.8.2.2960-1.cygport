@@ -1,0 +1,39 @@
+inherit mono
+
+DESCRIPTION="Python-like CLI programming language"
+HOMEPAGE="http://boo.codehaus.org/"
+SRC_URI="http://dist.codehaus.org/boo/distributions/${P}-src.zip"
+SRC_DIR=.
+
+src_compile() {
+	lndirs
+	cd ${B}
+	check_prog_req nant
+	nant \
+		-D:debug=False \
+		-D:install.prefix=/usr \
+		-D:java=jamvm \
+		-D:skip.vs2005=True -D:skip.ngen=False \
+		|| error "nant compile failed"
+
+	for b in booc booi booish
+	do
+		sed -e 's#@RUNTIME@#mono#g' -e 's#@prefix@#/usr#g' \
+			extras/${b}.in > build/${b}
+	done
+}
+
+src_test() {
+	cd ${B}
+	nant test
+}
+
+src_install() {
+	cd ${B}
+	nant install -D:install.prefix=/usr -D:install.destdir=${D} || error "nant install failed"
+
+	dodoc license.txt notice.txt readme.txt
+
+	# already provided by gtksourceview
+	rm -fr ${D}/usr/share/gtksourceview-1.0/
+}

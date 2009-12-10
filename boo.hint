@@ -1,0 +1,6 @@
+category: DotNET Interpreters
+requires: mono mono-Boo-Lang2.0 mono-mscorlib2.0 mono-System2.0
+sdesc: "CLI language with Python-like syntax"
+ldesc: "Boo is a new object oriented statically typed programming 
+language for the Common Language Infrastructure with a python inspired 
+syntax and a special focus on language and compiler extensibility."

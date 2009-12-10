@@ -1,0 +1,32 @@
+--- origsrc/default.build	2009-09-02 09:35:54.000000000 -0500
++++ src/default.build	2009-12-08 03:21:09.814235500 -0600
+@@ -6,23 +6,23 @@
+ 	<property name="boo.version" value="${boo.major.minor.release.version}.${boo.svn.revision}" dynamic="True" />
+ 	<property name="boo.assembly.version" value="2.${boo.major.minor.release.version}" />
+ 	
+-	<property name="debug" value="true" />
+-	<property name="optimize" value="false" />
++	<property name="debug" value="false" />
++	<property name="optimize" value="true" />
+ 	<property name="verbose" value="false" />
+ 
+-	<property name="antlr.jar" value="lib/antlr-2.7.5/antlr-2.7.5.jar" />
++	<property name="antlr.jar" value="/usr/share/java/antlr.jar" />
+ 	<property name="java" value="java" />	
+ 	
+ 	<property name="ngen.exe" value="${framework::get-framework-directory(framework::get-target-framework())}/ngen.exe" />
+-	<property name="skip.ngen" value="True" />
++	<property name="skip.ngen" value="False" />
+ 	<property name="skip.antlr" value="False" />
+ 	<property name="skip.ast" value="False" />
+-	<property name="skip.vs" value="False" />
++	<property name="skip.vs" value="True" />
+ 	
+ 	<property name="build.dir" value="build" dynamic="True"/>
+ 	<property name="distrobuild.dir" value="distrobuild"/>
+ 
+-	<property name="install.prefix" value="/usr/local" />
++	<property name="install.prefix" value="/usr" />
+ 	<property name="install.destdir" value="/" />
+ 
+ 	<property name="install.share" value="${path::combine(install.prefix,'share')}" />

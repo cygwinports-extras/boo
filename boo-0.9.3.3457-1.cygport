@@ -5,7 +5,8 @@ HOMEPAGE="http://boo.codehaus.org/"
 SRC_URI="http://dist.codehaus.org/boo/distributions/${P}-src.zip"
 SRC_DIR=.
 
-PATCH_URI="0.9.2.3383-build-properties.patch"
+PATCH_URI="0.9.2.3383-build-properties.patch
+           0.9.3-remove-gtksourceview1.patch"
 
 PKG_NAMES="boo mono-Boo-Lang2.0"
 boo_CONTENTS="--exclude=gac etc/ usr/"
@@ -36,12 +37,15 @@ src_install() {
 
 	nant install -D:install.prefix=/usr -D:install.destdir=${D} || error "nant install failed"
 
-#	mono_create_policy Boo.Lang "2.0.*" 2.${PV%.*} ${S}/src/boo.snk
+	# installing Boo.Lang.Extensions into GAC will break next version's build
+	pushd ${D}/usr/lib/mono
+	cp boo/Boo.Lang.Extensions.dll ../boo/
+	rm -fr boo/Boo.Lang.Extensions.dll gac/Boo.Lang.Extensions/
+	popd
 
-	sed -i -e 's|^\(libdir=\).*|\1/usr/lib/mono/boo|' ${D}/usr/lib/pkgconfig/boo.pc
+#	mono_create_policy Boo.Lang "2.0.9.*" 2.${PV%.*} ${S}/src/boo.snk
 
-	# already provided by gtksourceview
-	rm -fr ${D}/usr/share/gtksourceview-1.0/
+	sed -i -e 's|^\(libdir=\).*|\1/usr/lib/mono|' ${D}/usr/lib/pkgconfig/boo.pc
 
 	dodoc license.txt notice.txt readme.txt
 }

@@ -1,0 +1,19 @@
+--- origsrc/default.build	2010-06-29 00:53:33.128092000 -0500
++++ src/default.build	2010-06-29 01:01:25.073085700 -0500
+@@ -549,8 +549,6 @@
+ 
+ 		<property name="sharedmime.prefix" value="${pkg-config::get-variable('shared-mime-info','prefix')}" />
+ 		<property name="fakeroot.sharedmime" value="${install.destdir}/${sharedmime.prefix}" />
+-		<property name="gsv.prefix" value="${pkg-config::get-variable('gtksourceview-1.0','prefix')}" />
+-		<property name="fakeroot.gsv" value="${install.destdir}/${gsv.prefix}" />
+ 
+ 		<mkdir dir="${fakeroot.boolib}"/>
+ 		<mkdir dir="${fakeroot.bindir}"/>
+@@ -604,7 +602,6 @@
+ 			</fileset>
+ 		</copy>
+ 		
+-		<copy file="extras/boo.lang" todir="${fakeroot.gsv}/share/gtksourceview-1.0/language-specs/" />
+ 		<copy file="${build.dir}/boo.pc" todir="${fakeroot.libdir}/pkgconfig/" />
+ 		<copy file="extras/boo-mime-info.xml" todir="${fakeroot.sharedmime}/share/mime/packages/" />
+ 

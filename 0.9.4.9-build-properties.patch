@@ -1,7 +1,7 @@
---- origsrc/default.build	2009-09-02 09:35:54.000000000 -0500
-+++ src/default.build	2009-12-08 03:21:09.814235500 -0600
-@@ -6,23 +6,23 @@
- 	<property name="boo.version" value="${boo.major.minor.release.version}.${boo.svn.revision}" dynamic="True" />
+--- origsrc/default.build	2011-10-27 14:37:06.802797300 -0500
++++ src/default.build	2011-10-27 14:44:39.874387300 -0500
+@@ -6,25 +6,25 @@
+ 	<property name="boo.version" value="${boo.major.minor.release.version}.${boo.build.number}" dynamic="True" />
  	<property name="boo.assembly.version" value="2.${boo.major.minor.release.version}" />
  	
 -	<property name="debug" value="true" />
@@ -9,6 +9,8 @@
 +	<property name="debug" value="false" />
 +	<property name="optimize" value="true" />
  	<property name="verbose" value="false" />
+ 	
+ 	<property name="mono" value="${'mono' == framework::get-family(framework::get-runtime-framework())}" />
  
 -	<property name="antlr.jar" value="lib/antlr-2.7.5/antlr-2.7.5.jar" />
 +	<property name="antlr.jar" value="/usr/share/java/antlr.jar" />

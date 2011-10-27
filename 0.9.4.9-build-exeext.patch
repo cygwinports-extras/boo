@@ -1,0 +1,41 @@
+Putting the scripts (w/o .exe) into build.dir alongside binaries (w/ .exe)
+is not reliable on Cygwin.
+
+--- origsrc/default.build	2011-10-27 14:46:18.248158800 -0500
++++ src/default.build	2011-10-27 15:00:41.610863900 -0500
+@@ -203,7 +203,7 @@
+ 		</copy>
+ 
+ 		<if test="${not(platform::is-win32())}">
+-			<copy file="extras/booish.in" tofile="${build.dir}/booish" inputencoding="ASCII">
++			<copy file="extras/booish.in" tofile="extras/booish" inputencoding="ASCII">
+ 				<filterchain>
+ 					<replacestring from="@RUNTIME@" to="mono" />
+ 					<replacestring from="@prefix@" to="${install.prefix}" />
+@@ -241,7 +241,7 @@
+ 		</copy>
+ 		
+ 		<if test="${not(platform::is-win32())}">
+-			<copy file="extras/booi.in" tofile="${build.dir}/booi" inputencoding="ASCII">
++			<copy file="extras/booi.in" tofile="extras/booi" inputencoding="ASCII">
+ 				<filterchain>
+ 					<replacestring from="@RUNTIME@" to="mono" />
+ 					<replacestring from="@prefix@" to="${install.prefix}" />
+@@ -342,7 +342,7 @@
+ 		</csc>
+ 
+ 		<if test="${not(platform::is-win32())}">
+-			<copy file="extras/booc.in" tofile="${build.dir}/booc" inputencoding="ASCII">
++			<copy file="extras/booc.in" tofile="extras/booc" inputencoding="ASCII">
+ 				<filterchain>
+ 					<replacestring from="@RUNTIME@" to="mono" />
+ 					<replacestring from="@prefix@" to="${install.prefix}" />
+@@ -618,7 +618,7 @@
+ 		</copy>
+ 
+ 		<copy todir="${fakeroot.bindir}">
+-			<fileset basedir="${build.dir}">
++			<fileset basedir="extras">
+ 				<include name="booc"/>
+ 				<include name="booish"/>
+ 				<include name="booi"/>
